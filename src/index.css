@@ -1,4 +1,38 @@
-.container {
-  margin: 10;
-  background-color: #dee8e4;
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-footer {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid gray;
+}
+
+div#root {
+  flex: auto;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+div#root div.container {
+  flex: auto;
+  width: 100%;
+}
+
+div#blog div.card {
+  margin-bottom: 10px;
+}
+
+div#blog div.card a.card-title {
+  color: black;
+  font-size: larger;
+  font-weight: 500;
 }

@@ -20,7 +20,7 @@ const Blog: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div id="blog">
       <h2>Matin blogi</h2>
       {posts.map(post => <BlogPost key={post.id} post={post}/>)}
     </div>

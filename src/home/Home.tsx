@@ -1,8 +1,9 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <Container>
       <h2>Matti Leinonen</h2>
       <p>
         Tervetuloa kotisivuilleni. Olen vuonna 1992 syntynyt filosofian maisteri.
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
         blogissani. Sivusto on siis jatkuvan kehitystyön alla, ja tällä hetkellä
         aivan alkutekijöissään.
       </p>
-    </div>
+    </Container>
   );
 };
 
