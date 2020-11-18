@@ -1,34 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Blog from './Blog/Blog';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './home/Home';
 import MainNav from './navigation/MainNav';
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Row } from 'react-bootstrap';
+import BlogPostPage from './Blog/BlogPostPage';
+import LoginForm from './UserPage/LoginForm';
+import { hydrateUser } from './utils/hydrate';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from './reducers/userReducer';
+import { IAppState } from './store';
 
 const App: React.FC = () => {
+
+  const dispatch = useDispatch();
+  const user = useSelector((state: IAppState) => state.user);
+
+  useEffect(() => {
+    const user = hydrateUser();
+    if (user) dispatch(setUser(user));
+  }, []);
+
   return (
     <Router>
-        <MainNav />
-          <Container>
-          <Row>
-            <Col lg='2'>
-            </Col>
-            <Col md='12' lg='8'>
-              <Switch>
-                <Route path='/home'>
-                  <Home />
-                </Route>
-                <Route path='/blog'>
-                  <Blog />
-                </Route>
-              </Switch>
-            </Col>
-            <Col lg='2'>
-            </Col>
-          </Row>
-          </Container>
-        <footer id='main-footer'>&copy; Matti Leinonen {new Date().getFullYear()}</footer>
+      <MainNav />
+      <div className='container'>
+        <div className='row'>
+          <div className='col-lg-2'>
+          </div>
+          <div className='col-md-12 col-lg-8'>
+            <Switch>
+              <Route path='/home'>
+                <Home />
+              </Route>
+              <Route path='/blog/:id'>
+                <BlogPostPage />
+              </Route>
+              <Route path='/blog'>
+                <Blog />
+              </Route>
+              <Route path='/login'>
+                {user ? <Redirect to='/profile'/> : <LoginForm /> }
+              </Route>
+              <Route path='/profile'>
+                {user.user 
+                  ? <div>
+                    <h3>{user.user.name}</h3> 
+                  </div>
+                  : <Redirect to='/login' />
+                }
+              </Route>
+            </Switch>
+          </div>
+          <div className='col-lg-2'>
+          </div>
+        </div>
+      </div>
+      <footer id='main-footer'>&copy; Matti Leinonen {new Date().getFullYear()}</footer>
     </Router>
   );
 };

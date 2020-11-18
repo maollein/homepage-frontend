@@ -26,13 +26,3 @@ div#root div.container {
   flex: auto;
   width: 100%;
 }
-
-div#blog div.card {
-  margin-bottom: 10px;
-}
-
-div#blog div.card a.card-title {
-  color: black;
-  font-size: larger;
-  font-weight: 500;
-}

@@ -1,20 +1,32 @@
 import { IBlogPost } from '../types/types';
 
 const INIT_BLOG = 'INIT_BLOG';
+const SET_CURRENT_POST = 'SET_CURRENT_POST';
 
 export interface IInitBlogAction {
   type: typeof INIT_BLOG;
-  payload: IBlogState;
+  payload: {
+    posts: IBlogPost[];
+  }
 }
 
-type IBlogActionTypes = IInitBlogAction;
+export interface ISetCurrentPostAction {
+  type: typeof SET_CURRENT_POST;
+  payload: {
+    post: IBlogPost;
+  }
+}
+
+type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction;
 
 export interface IBlogState {
   posts: IBlogPost[];
+  currentPost: IBlogPost | undefined;
 }
 
 const initialState: IBlogState = {
-  posts: []
+  posts: [],
+  currentPost: undefined
 };
 
 const blogReducer = (
@@ -23,7 +35,9 @@ const blogReducer = (
   ): IBlogState => {
     switch(action.type) {
       case INIT_BLOG:
-        return action.payload;
+        return { ...state, posts: action.payload.posts};
+      case SET_CURRENT_POST:
+        return { ...state, currentPost: action.payload.post };
       default:
         return state;
     }
@@ -34,6 +48,15 @@ export const initBlog = (posts: IBlogPost[]): IInitBlogAction => {
     type: INIT_BLOG,
     payload: {
       posts
+    }
+  };
+};
+
+export const setCurrentPost = (post: IBlogPost): ISetCurrentPostAction => {
+  return {
+    type: SET_CURRENT_POST,
+    payload: {
+      post
     }
   };
 };

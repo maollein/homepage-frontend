@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import blogService from '../services/blogService';
 import { useSelector, useDispatch } from 'react-redux';
 import BlogPost from './BlogPost';
-import { IBlogState, initBlog } from '../reducers/blogReducer';
+import { initBlog } from '../reducers/blogReducer';
+import './blog.css';
+import { IAppState } from '../store';
 
 
 const Blog: React.FC = () => {
 
-  const selectPosts = (state: IBlogState) => state.posts;
+  const selectPosts = (state: IAppState) => state.blogs.posts;
   const posts = useSelector(selectPosts);
   const dispatch = useDispatch();
 

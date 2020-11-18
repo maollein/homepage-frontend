@@ -1,13 +1,18 @@
-import axios from 'axios';
+import httpClient from './httpClient';
 import { IBlogPost } from '../types/types';
-import { BACKEND } from '../utils/globals';
-const BASE_URL = `${BACKEND}/blog`;
+const BASE_URL = '/api/blog';
 
 const getPosts = async (): Promise<IBlogPost[]> => {
-  const { data: blogs } = await axios.get(BASE_URL);
+  const { data: blogs } = await httpClient.get(BASE_URL);
   return blogs;
 };
 
+const getPost = async (id: string): Promise<IBlogPost> => {
+  const { data: post } = await httpClient.get(`${BASE_URL}/${id}`);
+  return post;
+};
+
 export default {
-  getPosts
+  getPosts,
+  getPost
 };

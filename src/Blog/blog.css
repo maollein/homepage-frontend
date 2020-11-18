@@ -1,0 +1,9 @@
+div#blog div.card a.card-title {
+  color: black;
+  font-size: larger;
+  font-weight: 500;
+}
+
+div#blog div.card {
+  margin-bottom: 10px;
+}

@@ -1,7 +1,13 @@
 export interface IBlogPost {
   title: string;
-  author: string;
   content: string;
-  date: string;
+  created_at: string;
+  modified_at: string | null;
   id: number;
+}
+
+export interface IUserInfo {
+  username: string;
+  name: string;
+  id: number; 
 }

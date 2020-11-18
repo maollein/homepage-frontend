@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const webpack = require('webpack');
 
-const config = (env, argv) => {
-
-  const backend_url = argv.mode === 'production'
-    ? '/api'
-    : 'http://localhost:3001/api';
+const config = () => {
 
   return {
     entry: './src/index.tsx',
@@ -15,10 +10,15 @@ const config = (env, argv) => {
       filename: 'main.js'
     },
     devServer: {
+      index: '',
       contentBase: path.resolve(__dirname, 'build'),
       compress: true,
       port: 3000,
-      historyApiFallback: true
+      historyApiFallback: true,
+      proxy: {
+        context: () => true,
+        target: 'http://localhost:3001'
+      }
     },
     devtool: 'source-map',
     module: {
@@ -35,12 +35,7 @@ const config = (env, argv) => {
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        BACKEND_URL: JSON.stringify(backend_url)
-      })
-    ]
+    }
   };
 };
 
