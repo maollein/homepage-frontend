@@ -41,7 +41,7 @@ const App: React.FC = () => {
                 <Blog />
               </Route>
               <Route path='/login'>
-                {user ? <Redirect to='/profile'/> : <LoginForm /> }
+                {user.user ? <Redirect to='/profile'/> : <LoginForm /> }
               </Route>
               <Route path='/profile'>
                 {user.user 
