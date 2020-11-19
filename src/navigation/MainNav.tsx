@@ -22,6 +22,12 @@ const MainNav: React.FC = () => {
           <li className='nav-item'>
             <Link className='nav-link' to='/blog'>Blog</Link>
           </li>
+          {user.user
+            ? <li className='nav-item'>
+              <Link className='nav-link' to='/writer'>Writer</Link>
+            </li>
+            : null
+          }
         </ul>
         <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
           {user.user

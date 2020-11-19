@@ -2,6 +2,7 @@ import { IBlogPost } from '../types/types';
 
 const INIT_BLOG = 'INIT_BLOG';
 const SET_CURRENT_POST = 'SET_CURRENT_POST';
+const ADD_POST = 'ADD_POST';
 
 export interface IInitBlogAction {
   type: typeof INIT_BLOG;
@@ -17,7 +18,14 @@ export interface ISetCurrentPostAction {
   }
 }
 
-type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction;
+export interface IAddPostAction {
+  type: typeof ADD_POST;
+  payload: {
+    post: IBlogPost;
+  }
+}
+
+type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction | IAddPostAction;
 
 export interface IBlogState {
   posts: IBlogPost[];
@@ -30,17 +38,19 @@ const initialState: IBlogState = {
 };
 
 const blogReducer = (
-  state = initialState, 
+  state = initialState,
   action: IBlogActionTypes
-  ): IBlogState => {
-    switch(action.type) {
-      case INIT_BLOG:
-        return { ...state, posts: action.payload.posts};
-      case SET_CURRENT_POST:
-        return { ...state, currentPost: action.payload.post };
-      default:
-        return state;
-    }
+): IBlogState => {
+  switch (action.type) {
+    case INIT_BLOG:
+      return { ...state, posts: action.payload.posts };
+    case SET_CURRENT_POST:
+      return { ...state, currentPost: action.payload.post };
+    case ADD_POST:
+      return { ...state, posts: state.posts.concat(action.payload.post) };
+    default:
+      return state;
+  }
 };
 
 export const initBlog = (posts: IBlogPost[]): IInitBlogAction => {
@@ -55,6 +65,15 @@ export const initBlog = (posts: IBlogPost[]): IInitBlogAction => {
 export const setCurrentPost = (post: IBlogPost): ISetCurrentPostAction => {
   return {
     type: SET_CURRENT_POST,
+    payload: {
+      post
+    }
+  };
+};
+
+export const addPost = (post: IBlogPost): IAddPostAction => {
+  return {
+    type: ADD_POST,
     payload: {
       post
     }

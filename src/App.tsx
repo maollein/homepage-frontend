@@ -11,6 +11,7 @@ import { hydrateUser } from './utils/hydrate';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './reducers/userReducer';
 import { IAppState } from './store';
+import Writer from './writer/Writer';
 
 const App: React.FC = () => {
 
@@ -50,6 +51,9 @@ const App: React.FC = () => {
                   </div>
                   : <Redirect to='/login' />
                 }
+              </Route>
+              <Route path='/writer'>
+                <Writer />
               </Route>
             </Switch>
           </div>

@@ -1,5 +1,5 @@
 import httpClient from './httpClient';
-import { IBlogPost } from '../types/types';
+import { IBlogPost, INewBlogPost } from '../types/types';
 const BASE_URL = '/api/blog';
 
 const getPosts = async (): Promise<IBlogPost[]> => {
@@ -12,7 +12,13 @@ const getPost = async (id: string): Promise<IBlogPost> => {
   return post;
 };
 
+const postPost = async (post: INewBlogPost): Promise<IBlogPost> => {
+  const {data: addedPost } = await httpClient.post(BASE_URL, post);
+  return addedPost;
+};
+
 export default {
   getPosts,
-  getPost
+  getPost,
+  postPost
 };

@@ -6,6 +6,11 @@ export interface IBlogPost {
   id: number;
 }
 
+export interface INewBlogPost {
+  title: string,
+  content: string
+}
+
 export interface IUserInfo {
   username: string;
   name: string;
