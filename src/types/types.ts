@@ -4,6 +4,7 @@ export interface IBlogPost {
   created_at: string;
   modified_at: string | null;
   id: number;
+  user_id: number;
 }
 
 export interface INewBlogPost {

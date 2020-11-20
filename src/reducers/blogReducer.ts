@@ -3,6 +3,7 @@ import { IBlogPost } from '../types/types';
 const INIT_BLOG = 'INIT_BLOG';
 const SET_CURRENT_POST = 'SET_CURRENT_POST';
 const ADD_POST = 'ADD_POST';
+const DELETE_POST = 'DELETE_POST';
 
 export interface IInitBlogAction {
   type: typeof INIT_BLOG;
@@ -25,7 +26,14 @@ export interface IAddPostAction {
   }
 }
 
-type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction | IAddPostAction;
+export interface IDeletePost {
+  type: typeof DELETE_POST;
+  payload: {
+    id: number;
+  }
+}
+
+type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction | IAddPostAction | IDeletePost;
 
 export interface IBlogState {
   posts: IBlogPost[];
@@ -48,6 +56,8 @@ const blogReducer = (
       return { ...state, currentPost: action.payload.post };
     case ADD_POST:
       return { ...state, posts: state.posts.concat(action.payload.post) };
+    case DELETE_POST:
+      return { ...state, posts: state.posts.filter(post => post.id !== action.payload.id)};
     default:
       return state;
   }
@@ -76,6 +86,15 @@ export const addPost = (post: IBlogPost): IAddPostAction => {
     type: ADD_POST,
     payload: {
       post
+    }
+  };
+};
+
+export const deletePost = (id: number): IDeletePost => {
+  return {
+    type: DELETE_POST,
+    payload: {
+      id
     }
   };
 };

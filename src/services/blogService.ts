@@ -13,12 +13,18 @@ const getPost = async (id: string): Promise<IBlogPost> => {
 };
 
 const postPost = async (post: INewBlogPost): Promise<IBlogPost> => {
-  const {data: addedPost } = await httpClient.post(BASE_URL, post);
+  const { data: addedPost } = await httpClient.post(BASE_URL, post);
   return addedPost;
+};
+
+const deletePost = async (blogId: number): Promise<{ response: string }> => {
+  const { data: response } = await httpClient.delete(`${BASE_URL}/${blogId}`);
+  return response;
 };
 
 export default {
   getPosts,
   getPost,
-  postPost
+  postPost,
+  deletePost
 };
