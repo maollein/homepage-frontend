@@ -26,3 +26,11 @@ div#root div.container {
   flex: auto;
   width: 100%;
 }
+
+/* Hamburger svg must be loaded separately
+for bootstrap so that content security
+policy doesn't have to be relaxed. More info here:
+https://github.com/twbs/bootstrap/issues/25394 */
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("./images/hamburger.svg");
+}

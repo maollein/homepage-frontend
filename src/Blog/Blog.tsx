@@ -26,8 +26,12 @@ const Blog: React.FC = () => {
 
   const deleteBlogPost = async (blogId: number): Promise<void> => {
     if (confirm('Delete post permanently?')) {
-      await blogService.deletePost(blogId);
-      dispatch(deletePost(blogId));
+      try {
+        await blogService.deletePost(blogId);
+        dispatch(deletePost(blogId));
+      } catch (e) {
+        alert(e.response.data.error);
+      }
     }
   };
 

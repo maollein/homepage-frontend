@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = () => {
 
@@ -29,13 +30,24 @@ const config = () => {
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: ''
+              }
+            }, 'css-loader'],
         },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        }
       ],
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
-    }
+    },
+    plugins: [new MiniCssExtractPlugin()],
   };
 };
 
