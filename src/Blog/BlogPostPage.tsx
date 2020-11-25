@@ -32,7 +32,9 @@ const BlogPostPage: React.FC = () => {
 
   if (!post) return null;
   else return (
-    <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} />
+    <div className="mt-4">
+      <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} />
+    </div>
   );
 };
 

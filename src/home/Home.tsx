@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home: React.FC = () => {
   return (
-    <div className='container'>
+    <div className='container mt-4'>
       <h2>Matti Leinonen</h2>
       <p>
         Tervetuloa kotisivuilleni. Olen vuonna 1992 syntynyt filosofian maisteri.

@@ -22,9 +22,10 @@ div#root {
   width: 100%;
 }
 
-div#root div.container {
+div#root div.container-fluid {
   flex: auto;
   width: 100%;
+  overflow: hidden;
 }
 
 /* Hamburger svg must be loaded separately

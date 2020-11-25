@@ -26,7 +26,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <MainNav />
-      <div className='container'>
+      <div className='container-fluid'>
         <div className='row'>
           <div className='col-lg-2'>
           </div>

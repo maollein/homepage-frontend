@@ -1,9 +1,85 @@
-div#blog div.card a.card-title {
-  color: black;
-  font-size: larger;
-  font-weight: 500;
+div.blog-post-content p {
+  margin-bottom: 0.5rem;
 }
 
-div#blog div.card {
-  margin-bottom: 10px;
+div.blog-nav {
+  animation-duration: 1s;
+  animation-name: slidein-right;
+}
+
+div.blog-nav-toggler-closed {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+div.blog-nav-toggler-open {
+  position: absolute;
+  right: 300px;
+  top: 10px;
+}
+
+button.nav-toggler-btn {
+  margin-right: 0;
+  width: 2rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  border: 2px black;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.slidein-absolute {
+  animation-name: slidein-right-absolute;
+  animation-duration: 0.8s;
+}
+
+.slideout-absolute {
+  animation-name: slideout-right-absolute;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+
+.slidein-toggler {
+  animation-name: slidein-toggler-right-absolute;
+  animation-duration: 0.8s;
+}
+
+.slideout-toggler {
+  animation-name: slideout-toggler-right-absolute;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+
+div.togglable-blog-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(3px);
+  width: 300px;
+}
+
+@keyframes slidein-right-absolute{
+  0% { right: -300px }
+  100% { right: 0 }
+}
+
+@keyframes slideout-right-absolute{
+  0% { right: 0 }
+  100% { right: -300px }
+}
+
+@keyframes slidein-toggler-right-absolute{
+  0% { right: 0 }
+  100% { right: 300px }
+}
+
+@keyframes slideout-toggler-right-absolute{
+  0% { right: 300px }
+  100% { right: 0 }
+}
+
+@keyframes slidein-right{
+  0% { margin-left: 100% }
+  100% { margin-left: 0% }
 }
