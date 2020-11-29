@@ -2,29 +2,43 @@ import React, { useEffect, useState } from 'react';
 import blogService from '../services/blogService';
 import { useSelector, useDispatch } from 'react-redux';
 import BlogPost from './BlogPost';
-import { deletePost, initBlog } from '../reducers/blogReducer';
+import { deletePost, initBlog, setMonths, setPostCount } from '../reducers/blogReducer';
 import './blog.css';
 import { IAppState } from '../store';
 import { sortBlogsByCreatedAt } from '../utils/utils';
 import BlogProfile from './BlogProfile';
+import BlogArchive from './BlogArchive';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const Blog: React.FC = () => {
 
-  const selectPosts = (state: IAppState) => state.blogs.posts;
-  const selectUser = (state: IAppState) => state.user;
-  const posts = useSelector(selectPosts);
-  const user = useSelector(selectUser);
+  const posts = useSelector((state: IAppState) => state.blogs.posts);
+  const user = useSelector((state: IAppState) => state.user);
+  const months = useSelector((state: IAppState) => state.blogs.months);
+  const postCount = useSelector((state: IAppState) => state.blogs.postCount);
   const [showTogglableNav, setShowTogglableNav] = useState<undefined | true | false>(undefined);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     const getPosts = async () => {
-      const blogPosts = await blogService.getPosts();
-      dispatch(initBlog(blogPosts));
+      const search = location.search ? location.search : '';
+      const posts = await blogService.getPosts(search);
+      dispatch(initBlog(posts));
     };
-    if (posts.length === 0) getPosts();
-  }, []);
+    const getMonths = async () => {
+      const months = await blogService.getMonths();
+      dispatch(setMonths(months));
+    };
+    const getPostCount = async () => {
+      const count = await blogService.getPostCount();
+      dispatch(setPostCount(count));
+    };
+    getPosts();
+    getMonths();
+    getPostCount();
+  }, [location.search]);
 
   const deleteBlogPost = async (blogId: number): Promise<void> => {
     if (confirm('Delete post permanently?')) {
@@ -53,14 +67,25 @@ const Blog: React.FC = () => {
     else return "blog-nav-toggler-open slidein-toggler";
   };
 
+  const getPageLinks = (): JSX.Element[] => {
+    const links: JSX.Element[] = [];
+    for (let i = 1; i < Math.ceil(postCount / 5) + 1; i++) {
+      links.push(<Link key={i} to={`/blog?page=${i}`}>{i}</Link>);
+    }
+    return links;
+  };
+
   return (
-    <div className="container-fluid">
-      <div id="blog" className="row">
+    <div className="container-fluid h-100">
+      <div id="blog" className="row h-100">
         <div className="col-md-12 col-lg-9 pt-4">
           {posts
             .sort(sortBlogsByCreatedAt())
             .map(post => <BlogPost key={post.id} post={post} feed={true} user={user} deletePost={deleteBlogPost} />)
           }
+          <div className="page-links mb-4">
+            {getPageLinks()}
+          </div>
         </div>
         <div className={`${placeAndAnimate()} d-lg-none `} onClick={toggleNav}>
           <button className="nav-toggler-btn bg-dark text-light">
@@ -70,14 +95,16 @@ const Blog: React.FC = () => {
             }
           </button>
         </div>
-        <div className={`d-lg-none togglable-blog-nav h-100 ${showAndAnimate()}`}>
-          <div className="border-left border-dark w-100 h-100 pt-4 pr-4 pl-2">
+        <div className={`d-lg-none togglable-blog-nav border-left border-dark h-100 ${showAndAnimate()}`}>
+          <div className="w-100 h-100 pt-4 pr-4 pl-2">
             <BlogProfile />
+            <BlogArchive months={months} />
           </div>
         </div>
         <div className="d-none d-lg-block col-lg-3">
           <div className="blog-nav border-left border-dark w-100 h-100">
             <BlogProfile />
+            <BlogArchive months={months} />
           </div>
         </div>
       </div>

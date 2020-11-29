@@ -9,6 +9,7 @@ const BlogPost: React.FC<{
   user: { user?: IUserInfo },
   deletePost: (blogId: number) => Promise<void>
 }> = ({ post, feed, user, deletePost }) => {
+
   return (
     <div className="blog-post mb-4">
       <div className="">
@@ -28,7 +29,7 @@ const BlogPost: React.FC<{
           </div>
           : null
         }
-        <hr/>
+        <hr />
       </div>
     </div>
   );

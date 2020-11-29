@@ -27,8 +27,8 @@ const App: React.FC = () => {
     <Router>
       <MainNav />
       <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-lg-2'>
+        <div className='row h-100'>
+          <div className='d-none d-lg-block col-lg-2'>
           </div>
           <div className='col-md-12 col-lg-8'>
             <Switch>
@@ -42,12 +42,12 @@ const App: React.FC = () => {
                 <Blog />
               </Route>
               <Route path='/login'>
-                {user.user ? <Redirect to='/profile'/> : <LoginForm /> }
+                {user.user ? <Redirect to='/profile' /> : <LoginForm />}
               </Route>
               <Route path='/profile'>
-                {user.user 
+                {user.user
                   ? <div>
-                    <h3>{user.user.name}</h3> 
+                    <h3>{user.user.name}</h3>
                   </div>
                   : <Redirect to='/login' />
                 }
@@ -57,7 +57,7 @@ const App: React.FC = () => {
               </Route>
             </Switch>
           </div>
-          <div className='col-lg-2'>
+          <div className='d-none d-lg-block col-lg-2'>
           </div>
         </div>
       </div>

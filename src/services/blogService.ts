@@ -2,8 +2,8 @@ import httpClient from './httpClient';
 import { IBlogPost, INewBlogPost } from '../types/types';
 const BASE_URL = '/api/blog';
 
-const getPosts = async (): Promise<IBlogPost[]> => {
-  const { data: blogs } = await httpClient.get(BASE_URL);
+const getPosts = async (search: string): Promise<IBlogPost[]> => {
+  const { data: blogs } = await httpClient.get(`${BASE_URL}${search}`);
   return blogs;
 };
 
@@ -22,9 +22,21 @@ const deletePost = async (blogId: number): Promise<{ response: string }> => {
   return response;
 };
 
+const getMonths = async (): Promise<string[]> => {
+  const { data: months } = await httpClient.get(`${BASE_URL}/months`);
+  return months;
+};
+
+const getPostCount = async (): Promise<number> => {
+  const { data: count } = await httpClient.get(`${BASE_URL}/postcount`);
+  return count.count;
+};
+
 export default {
   getPosts,
   getPost,
   postPost,
-  deletePost
+  deletePost,
+  getMonths,
+  getPostCount
 };

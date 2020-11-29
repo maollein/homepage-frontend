@@ -7,6 +7,20 @@ div.blog-nav {
   animation-name: slidein-right;
 }
 
+div.blog-archive ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.blog-archive ul li {
+  list-style: none;
+}
+
+div.page-links a {
+  font-size: 1.3rem;
+  padding-right: 10px;
+}
+
 div.blog-nav-toggler-closed {
   position: absolute;
   right: 0;

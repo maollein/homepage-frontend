@@ -4,6 +4,8 @@ const INIT_BLOG = 'INIT_BLOG';
 const SET_CURRENT_POST = 'SET_CURRENT_POST';
 const ADD_POST = 'ADD_POST';
 const DELETE_POST = 'DELETE_POST';
+const SET_MONTHS = 'SET_MONTHS';
+const SET_POST_COUNT = 'SET_POST_COUNT';
 
 export interface IInitBlogAction {
   type: typeof INIT_BLOG;
@@ -33,16 +35,34 @@ export interface IDeletePost {
   }
 }
 
-type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction | IAddPostAction | IDeletePost;
+export interface ISetMonthsAction {
+  type: typeof SET_MONTHS;
+  payload: {
+    months: string[];
+  }
+}
+
+export interface ISetPostCountAction {
+  type: typeof SET_POST_COUNT;
+  payload: {
+    postCount: number;
+  }
+}
+
+type IBlogActionTypes = IInitBlogAction | ISetCurrentPostAction | IAddPostAction | IDeletePost | ISetMonthsAction | ISetPostCountAction;
 
 export interface IBlogState {
   posts: IBlogPost[];
   currentPost: IBlogPost | undefined;
+  months: string[];
+  postCount: number;
 }
 
 const initialState: IBlogState = {
   posts: [],
-  currentPost: undefined
+  currentPost: undefined,
+  months: [],
+  postCount: 0
 };
 
 const blogReducer = (
@@ -58,6 +78,10 @@ const blogReducer = (
       return { ...state, posts: state.posts.concat(action.payload.post) };
     case DELETE_POST:
       return { ...state, posts: state.posts.filter(post => post.id !== action.payload.id)};
+    case SET_MONTHS:
+      return { ...state, months: action.payload.months };
+    case SET_POST_COUNT:
+      return { ...state, postCount: action.payload.postCount };
     default:
       return state;
   }
@@ -95,6 +119,24 @@ export const deletePost = (id: number): IDeletePost => {
     type: DELETE_POST,
     payload: {
       id
+    }
+  };
+};
+
+export const setMonths = (months: string[]): ISetMonthsAction => {
+  return {
+    type: SET_MONTHS,
+    payload: {
+      months
+    }
+  };
+};
+
+export const setPostCount = (postCount: number): ISetPostCountAction => {
+  return {
+    type: SET_POST_COUNT,
+    payload: {
+      postCount
     }
   };
 };
