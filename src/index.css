@@ -38,12 +38,8 @@ div#root div.container-fluid {
  }
 
 .modal-inner {
-  position: fixed;
-  top: 25%;
-  left: 25%;
-  right: 25%;
-  bottom: 25%;
   background-color: white;
+  margin-top: 10%;
 }
 
 /* Hamburger svg must be loaded separately

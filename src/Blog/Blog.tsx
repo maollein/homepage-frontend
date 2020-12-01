@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import blogService from '../services/blogService';
 import { useSelector, useDispatch } from 'react-redux';
 import BlogPost from './BlogPost';
-import { deletePost, initBlog, setMonths, setPostCount } from '../reducers/blogReducer';
+import { deletePost, initBlog, setMonths, setPostCount, updatePost } from '../reducers/blogReducer';
 import './blog.css';
 import { IAppState } from '../store';
-import { sortBlogsByCreatedAt } from '../utils/utils';
 import BlogProfile from './BlogProfile';
 import BlogArchive from './BlogArchive';
 import { Link, useLocation } from 'react-router-dom';
+import { INewBlogPost } from '../types/types';
 
 
 const Blog: React.FC = () => {
@@ -51,6 +51,11 @@ const Blog: React.FC = () => {
     }
   };
 
+  const savePost = async (id: number, postToUpate: INewBlogPost) => {
+    const updatedPost = await blogService.updatePost(id, postToUpate);
+    dispatch(updatePost(updatedPost));
+  };
+
   const toggleNav = () => {
     setShowTogglableNav(!showTogglableNav);
   };
@@ -80,8 +85,16 @@ const Blog: React.FC = () => {
       <div id="blog" className="row h-100">
         <div className="col-md-12 col-lg-9 pt-4">
           {posts
-            .sort(sortBlogsByCreatedAt())
-            .map(post => <BlogPost key={post.id} post={post} feed={true} user={user} deletePost={deleteBlogPost} />)
+            .map(post =>
+              <BlogPost 
+                key={post.id} 
+                post={post} 
+                feed={true} 
+                user={user} 
+                deletePost={deleteBlogPost} 
+                savePost={savePost}
+              />
+            )
           }
           <div className="page-links mb-4">
             {getPageLinks()}

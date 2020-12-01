@@ -32,11 +32,17 @@ const getPostCount = async (): Promise<number> => {
   return count.count;
 };
 
+const updatePost = async (id: number, post: INewBlogPost): Promise<IBlogPost> => {
+  const { data: updatedPost } = await httpClient.put(`${BASE_URL}/${id}`, post);
+  return updatedPost;
+};
+
 export default {
   getPosts,
   getPost,
   postPost,
   deletePost,
   getMonths,
-  getPostCount
+  getPostCount,
+  updatePost
 };

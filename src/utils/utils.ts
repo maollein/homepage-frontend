@@ -14,3 +14,15 @@ export const hydrateUser = (): IUserInfo | null => {
   const user = JSON.parse(userString);
   return user;
 };
+
+export const dateToUIFormat = (date: string): string => {
+  const options = {
+    month: 'long',
+    year: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  };
+  return new Date(date).toLocaleDateString(undefined, options);
+};

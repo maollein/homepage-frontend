@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { deletePost, setCurrentPost } from '../reducers/blogReducer';
+import { deletePost, setCurrentPost, updatePost } from '../reducers/blogReducer';
 import blogService from '../services/blogService';
 import { IAppState } from '../store';
+import { INewBlogPost } from '../types/types';
 import BlogPost from './BlogPost';
 
 const BlogPostPage: React.FC = () => {
@@ -30,12 +31,18 @@ const BlogPostPage: React.FC = () => {
     }
   };
 
+  const savePost = async (id: number, postToUpate: INewBlogPost) => {
+    const updatedPost = await blogService.updatePost(id, postToUpate);
+    dispatch(updatePost(updatedPost));
+    dispatch(setCurrentPost(updatedPost));
+  };
+
   if (!post) return null;
   else return (
     <div className="mt-4 container-fluid">
       <div className="row">
         <div className="col-12 col-lg-10">
-          <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} />
+          <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} savePost={savePost} />
         </div>
       </div>
     </div>
