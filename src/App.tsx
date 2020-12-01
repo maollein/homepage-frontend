@@ -7,11 +7,11 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BlogPostPage from './Blog/BlogPostPage';
 import LoginForm from './UserPage/LoginForm';
-import { hydrateUser } from './utils/hydrate';
+import { hydrateUser } from './utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './reducers/userReducer';
 import { IAppState } from './store';
-import Writer from './writer/Writer';
+import WriterPage from './writer/WriterPage';
 
 const App: React.FC = () => {
 
@@ -53,7 +53,7 @@ const App: React.FC = () => {
                 }
               </Route>
               <Route path='/writer'>
-                <Writer />
+                <WriterPage />
               </Route>
             </Switch>
           </div>
