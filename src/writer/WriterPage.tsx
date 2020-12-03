@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addPost } from '../reducers/blogReducer';
 import blogService from '../services/blogService';
 import Preview from './Preview';
@@ -10,13 +11,18 @@ const WriterPage: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const publishPost = async () => {
-    const addedPost = await blogService.postPost({ title, content });
-    dispatch(addPost(addedPost));
-    setContent('');
-    setTitle('');
-    alert('Post published');
+    try {
+      const addedPost = await blogService.postPost({ title, content });
+      dispatch(addPost(addedPost));
+      setContent('');
+      setTitle('');
+      history.push('/blog');
+    } catch (e) {
+      alert(e.response.data.error);
+    }
   };
 
   const titleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +40,7 @@ const WriterPage: React.FC = () => {
         content={content}
         titleChange={titleChange}
         contentChange={contentChange}
-        submitAction={{name: 'Publish', action: publishPost}}
+        submitAction={{ name: 'Publish', action: publishPost }}
         actions={[]}
       />
       <Preview title={title} content={content} />

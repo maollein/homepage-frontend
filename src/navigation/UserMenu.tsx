@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { removeUser } from '../reducers/userReducer';
 import loginService from '../services/loginService';
 import { IUserInfo } from '../types/types';
@@ -8,14 +8,16 @@ import { IUserInfo } from '../types/types';
 const UserMenu: React.FC<{user: IUserInfo}> = ({ user }) => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const signOut = async () => {
-    const res = await loginService.logout();
-    if (res.status === 200) {
+    try {
+      await loginService.logout();
       sessionStorage.removeItem('user');
       dispatch(removeUser());
-    } else {
-      alert('Logout failed! Try again later or clear cookies.');
+      history.push('/login');
+    } catch (e) {
+      alert('Logout failed! Try again later or clear cookies and session storage.');
     }
   };
 

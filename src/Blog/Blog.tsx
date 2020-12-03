@@ -52,8 +52,12 @@ const Blog: React.FC = () => {
   };
 
   const savePost = async (id: number, postToUpate: INewBlogPost) => {
-    const updatedPost = await blogService.updatePost(id, postToUpate);
-    dispatch(updatePost(updatedPost));
+    try {
+      const updatedPost = await blogService.updatePost(id, postToUpate);
+      dispatch(updatePost(updatedPost));
+    } catch (e) {
+      alert(e.response.data.error);
+    }
   };
 
   const toggleNav = () => {
@@ -86,12 +90,12 @@ const Blog: React.FC = () => {
         <div className="col-md-12 col-lg-9 pt-4">
           {posts
             .map(post =>
-              <BlogPost 
-                key={post.id} 
-                post={post} 
-                feed={true} 
-                user={user} 
-                deletePost={deleteBlogPost} 
+              <BlogPost
+                key={post.id}
+                post={post}
+                feed={true}
+                user={user}
+                deletePost={deleteBlogPost}
                 savePost={savePost}
               />
             )

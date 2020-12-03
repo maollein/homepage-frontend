@@ -19,7 +19,7 @@ const LoginForm: React.FC = () => {
       dispatch(setUser(user));
       history.push('/home');
     } catch (e) {
-      console.log(e);
+      alert(e.response.data.error);
     }
 
   };
