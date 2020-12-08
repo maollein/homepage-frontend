@@ -2,9 +2,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const config = () => {
+const config = (env, options) => {
 
-  return {
+  const config = {
     entry: './src/index.tsx',
     output: {
       path: path.resolve(__dirname, 'build'),
@@ -21,7 +21,7 @@ const config = () => {
         target: 'http://localhost:3001'
       }
     },
-    devtool: 'source-map',
+    // devtool: 'source-map',
     module: {
       rules: [
         {
@@ -49,6 +49,12 @@ const config = () => {
     },
     plugins: [new MiniCssExtractPlugin()],
   };
+  console.log(options.mode);
+  if (options.mode === 'development') {
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    config.devtool = 'source-map';
+  }
+  return config;
 };
 
 module.exports = config;
