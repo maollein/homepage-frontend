@@ -29,13 +29,25 @@ const LoginForm: React.FC = () => {
       <form className="card-body w-75 mx-auto" onSubmit={login}>
         <h3>Sign in</h3>
         <div className="form-group mt-3">
-          <input className="form-control border-dark" type="text" placeholder="username" value={username} onChange={(event) => setUsername(event?.target.value)} />
+          <input className="form-control border-dark"
+            id="login-username-input"
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(event) => setUsername(event?.target.value)}
+          />
         </div>
         <div className="form-group">
-          <input className="form-control border-dark" type="password" placeholder="password" value={password} onChange={(event) => setPassword(event?.target.value)} />
+          <input className="form-control border-dark"
+            id="login-password-input"
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(event) => setPassword(event?.target.value)}
+          />
         </div>
         <div className="form-group">
-          <button className="btn btn-outline-dark" type="submit">Sign in</button>
+          <button className="btn btn-outline-dark" id="login-btn" type="submit">Sign in</button>
         </div>
       </form>
     </div>
