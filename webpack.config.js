@@ -49,11 +49,8 @@ const config = (env, options) => {
     },
     plugins: [new MiniCssExtractPlugin()],
   };
-  console.log(options.mode);
-  if (options.mode === 'development') {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  if (options.mode === 'development')
     config.devtool = 'source-map';
-  }
   return config;
 };
 
