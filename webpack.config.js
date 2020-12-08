@@ -21,7 +21,6 @@ const config = (env, options) => {
         target: 'http://localhost:3001'
       }
     },
-    // devtool: 'source-map',
     module: {
       rules: [
         {
