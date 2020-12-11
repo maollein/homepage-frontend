@@ -17,14 +17,14 @@ const MainNav: React.FC = () => {
       <div className='collapse navbar-collapse' id='mainNavLinks'>
         <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
           <li className='nav-item'>
-            <Link className='nav-link' to='/home'>Home</Link>
+            <Link className='nav-link' id="main-nav-home-link" to='/home'>Home</Link>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/blog'>Blog</Link>
+            <Link className='nav-link' id="main-nav-blog-link" to='/blog'>Blog</Link>
           </li>
           {user.user
             ? <li className='nav-item'>
-              <Link className='nav-link' to='/writer'>Writer</Link>
+              <Link className='nav-link' id="main-nav-writer-link" to='/writer'>Writer</Link>
             </li>
             : null
           }

@@ -29,7 +29,12 @@ dbPort=[yourport]
 ```
 
 ### Login tests
-
 A *user_account* row and a *login_counter* row for that account need to
 exist in the database. Valid username and password for the account must be
 defined in *tests/integration/login/resource.robot* variables section.
+
+## Maintaining testability
+- Add id-attribute to the top element of a component if it is not supposed
+to be multiplied on the page.
+- Element locators in tests are to be written starting from the closest
+(parent) element that has an id attribute.

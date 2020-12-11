@@ -30,7 +30,7 @@ const Writer: React.FC<
     };
 
     return (
-      <form className='mt-3' onSubmit={handleSubmit}>
+      <form className='mt-3' id="writer-form" onSubmit={handleSubmit}>
         <input type='text' className='form-control border-dark' placeholder='Title' value={title} onChange={titleChange} />
         <textarea className='form-control border-dark mt-2' placeholder='content...' value={content} onChange={contentChange} />
         <button type='submit' className='form-control btn btn-outline-dark mt-2 w-auto'>{ submitAction.name }</button>

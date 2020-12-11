@@ -3,7 +3,7 @@ Documentation    Invalid login tests
 Suite Setup       Open Browser To Login Page
 Suite Teardown    Close Browser Clear Login Counter
 Test Template    Invalid Login Attempt
-Resource         resource.robot
+Resource         ../resources/resource.robot
 Resource         ../database/database.robot
 
 *** Test Cases ***

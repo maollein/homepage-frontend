@@ -23,10 +23,10 @@ const UserMenu: React.FC<{user: IUserInfo}> = ({ user }) => {
 
   return (
     <li className='nav-item dropdown'>
-      <a className='nav-link dropdown-toggle' href='#' role='button' data-toggle='dropdown'>{user.name}</a>
+      <a className='nav-link dropdown-toggle' id="user-menu" href='#' role='button' data-toggle='dropdown'>{user.name}</a>
       <div className='dropdown-menu dropdown-menu-right'>
         <Link className='dropdown-item' to='/profile'>Profile</Link>
-        <a className='dropdown-item' href='#' onClick={signOut}>Sign out</a>
+        <a className='dropdown-item' id="user-menu-logout-btn" href='#' onClick={signOut}>Sign out</a>
       </div>
     </li>
   );

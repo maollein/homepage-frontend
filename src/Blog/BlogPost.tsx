@@ -25,29 +25,27 @@ const BlogPost: React.FC<{
 
   return (
     <div className="blog-post mb-4">
-      <div className="">
-        <h2 className="">
-          {feed
-            ? <Link className="text-dark" to={`/blog/${post.id}`}>{post.title}</Link>
-            : post.title
-          }
-        </h2>
-        <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: mdToHTML(post.content) }}></div>
-        <footer className="blog-post-footer mt-2 mb-1">
-          {post.modified_at
-            ? <p>{`${dateToUIFormat(post.created_at)}, edited on ${dateToUIFormat(post.modified_at)}`}</p>
-            : <p>{dateToUIFormat(post.created_at)}</p>
-          }
-        </footer>
-        {user.user && post.user_id === user.user.id
-          ? <div>
-            <button onClick={() => deletePost(post.id)} className='btn btn-outline-danger'>Delete</button>
-            <button onClick={() => setShowEditor(!showEditor)} className="btn btn-outline-dark ml-2">Edit</button>
-          </div>
-          : null
+      <h2 className="">
+        {feed
+          ? <Link className="text-dark" to={`/blog/${post.id}`}>{post.title}</Link>
+          : post.title
         }
-        <hr />
-      </div>
+      </h2>
+      <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: mdToHTML(post.content) }}></div>
+      <footer className="blog-post-footer mt-2 mb-1">
+        {post.modified_at
+          ? <p>{`${dateToUIFormat(post.created_at)}, edited on ${dateToUIFormat(post.modified_at)}`}</p>
+          : <p>{dateToUIFormat(post.created_at)}</p>
+        }
+      </footer>
+      {user.user && post.user_id === user.user.id
+        ? <div>
+          <button onClick={() => deletePost(post.id)} className='btn btn-outline-danger'>Delete</button>
+          <button onClick={() => setShowEditor(!showEditor)} className="btn btn-outline-dark ml-2">Edit</button>
+        </div>
+        : null
+      }
+      <hr />
       {
         showEditor
           ? <Modal

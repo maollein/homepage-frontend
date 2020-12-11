@@ -1,13 +1,25 @@
 *** Settings ***
-Documentation     Valid login tests
+Documentation    Valid login tests
+Library          Collections
 Test Setup       Open Browser To Login Page
 Test Teardown    Close Browser
-Resource         resource.robot
+Resource         ../resources/resource.robot
 Resource         ../database/database.robot
 
 *** Test Cases ***
 Valid login
-    Input Text      login-username-input    ${VALID USER}
-    Input Text      login-password-input    ${VALID PASSWORD}
-    Click Button    login-btn
+    ${cookies}    Get Cookies    True
+    Dictionary Should Not Contain Key    ${cookies}    login
+    Login Attempt    ${VALID USER}    ${VALID PASSWORD}
     Wait Until Location Is    ${HOME URL}
+    ${cookies}    Get Cookies    True
+    Dictionary Should Contain Key    ${cookies}    login
+
+Logout
+    Login Attempt    ${VALID USER}    ${VALID PASSWORD}
+    Wait Until Location Is    ${HOME URL}
+    Click Link    user-menu
+    Click Link    user-menu-logout-btn
+    Wait Until Location Is    ${LOGIN URL}
+    ${cookies}    Get Cookies    True
+    Dictionary Should Not Contain Key    ${cookies}    login
