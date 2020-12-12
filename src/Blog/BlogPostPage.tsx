@@ -39,7 +39,7 @@ const BlogPostPage: React.FC = () => {
 
   if (!post) return null;
   else return (
-    <div className="mt-4 container-fluid">
+    <div className="mt-4 container-fluid" id="blog-post-page">
       <div className="row">
         <div className="col-12 col-lg-10">
           <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} savePost={savePost} />

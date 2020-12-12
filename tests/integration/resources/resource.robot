@@ -1,5 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
+Resource  ${CURDIR}/database.robot
 
 *** Variables ***
 ${SERVER}        localhost:3000
@@ -26,6 +27,10 @@ Open Browser To Home Page
   Maximize Browser Window
   Set Selenium Timeout    ${TIMEOUT}
 
+Open Browser And Login
+  Open Browser To Login Page
+  Login Valid User
+
 Clear Login Form
   Clear Element Text    login-username-input
   Clear Element Text    login-password-input
@@ -46,6 +51,6 @@ Invalid Login Attempt
   Alert Should Be Present    ${message}    ACCEPT
   Clear Login Form
 
-Login Valid user
+Login Valid User
   Login Attempt    ${VALID USER}  ${VALID PASSWORD}
   Wait Until Location Is    ${HOME URL}

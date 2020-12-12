@@ -118,7 +118,7 @@ const Blog: React.FC = () => {
             <BlogArchive months={months} />
           </div>
         </div>
-        <div className="d-none d-lg-block col-lg-3">
+        <div id="blog-nav" className="d-none d-lg-block col-lg-3">
           <div className="blog-nav border-left border-dark w-100 h-100">
             <BlogProfile />
             <BlogArchive months={months} />

@@ -4,7 +4,6 @@ Suite Setup       Open Browser To Login Page
 Suite Teardown    Close Browser Clear Login Counter
 Test Template    Invalid Login Attempt
 Resource         ../resources/resource.robot
-Resource         ../database/database.robot
 
 *** Test Cases ***
 Invalid username    invalid         ${VALID PASSWORD}    ${LOGIN FAIL MSG}
