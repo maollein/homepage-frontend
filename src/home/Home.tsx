@@ -13,15 +13,7 @@ const Home: React.FC = () => {
             Valmistuin elokuussa 2020 Jyväskylän yliopistosta pääaineenani tietotekniikka.
             Näiden sivujen tarkoituksena on olla mukava projekti, jonka kautta voin
             kasvattaa omaa sovelluskehitysosaamistani sekä ilmaista itseäni omassa
-            blogissani. Sivusto on siis jatkuvan kehitystyön alla, ja tällä hetkellä
-            aivan alkutekijöissään.
-          </p>
-          <h3>Kotisivujen toteutus</h3>
-          <p>
-            Selainpuolella on käytössä muun muassa <b>React</b>, <b>React router</b>, <b>Redux</b> ja <b>Bootstrap</b>.
-            Kehitystyössä käytetään <b>Webpackia</b> ja <b>Babelia</b> ilman Create React App -magioita.
-            Palvelinpuolella on käytössä <b>Node</b> ja <b>Express</b> sekä tietokantana <b>PostgreSQL</b>. Niin 
-            selain- kuin palvelinpuolellakin käytetään <b>TypeScriptiä</b>.
+            blogissani. Sivusto on siis jatkuvan kehitystyön alla.
           </p>
         </div>
       </div>
