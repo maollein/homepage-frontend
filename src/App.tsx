@@ -56,6 +56,9 @@ const App: React.FC = () => {
               <Route path='/writer'>
                 <WriterPage />
               </Route>
+              <Route path='/'>
+                <Home />
+              </Route>
             </Switch>
           </div>
           <div className='d-none d-lg-block col-lg-2'>
