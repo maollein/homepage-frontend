@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = (env, options) => {
 
@@ -46,7 +48,16 @@ const config = (env, options) => {
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
     },
-    plugins: [new MiniCssExtractPlugin()],
+    plugins: [
+      new MiniCssExtractPlugin()
+    ],
+    optimization: {
+      minimize: options.mode === 'development' ? false : true,
+      minimizer: [        
+        new CssMinimizerPlugin(),
+        new TerserPlugin()
+      ]
+    }
   };
   if (options.mode === 'development')
     config.devtool = 'source-map';
