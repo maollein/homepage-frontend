@@ -3,6 +3,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 const config = (env, options) => {
 
@@ -10,7 +12,7 @@ const config = (env, options) => {
     entry: './src/index.tsx',
     output: {
       path: path.resolve(__dirname, 'build'),
-      filename: 'main.js'
+      filename: '[name].js'
     },
     devServer: {
       index: '',
@@ -49,14 +51,27 @@ const config = (env, options) => {
       extensions: ['.ts', '.tsx', '.js', '.json'],
     },
     plugins: [
-      new MiniCssExtractPlugin()
+      new MiniCssExtractPlugin(),
+      new webpack.ContextReplacementPlugin(
+        /highlight\.js\/lib\/languages$/,
+        new RegExp(`^./(${['javascript', 'python', 'typescript'].join('|')})$`),
+      ),
+      new CopyPlugin({
+        patterns: [
+          {from: './src/static'}
+        ]
+      })
     ],
     optimization: {
       minimize: options.mode === 'development' ? false : true,
       minimizer: [        
         new CssMinimizerPlugin(),
         new TerserPlugin()
-      ]
+      ],
+      splitChunks: {
+        chunks: 'all',
+        name: 'vendor'
+      }
     }
   };
   if (options.mode === 'development')

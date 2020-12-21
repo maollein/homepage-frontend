@@ -5,6 +5,7 @@ import { IBlogPost, INewBlogPost, IUserInfo } from '../types/types';
 import { mdToHTML } from '../utils/markdownConverter';
 import { dateToUIFormat } from '../utils/utils';
 import Writer from '../writer/Writer';
+import 'highlight.js/styles/vs2015.css';
 
 const BlogPost: React.FC<{
   post: IBlogPost,

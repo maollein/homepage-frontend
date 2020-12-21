@@ -5,7 +5,6 @@ import Home from './home/Home';
 import MainNav from './navigation/MainNav';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'highlight.js/styles/vs2015.css';
 import BlogPostPage from './Blog/BlogPostPage';
 import LoginForm from './UserPage/LoginForm';
 import { hydrateUser } from './utils/utils';
