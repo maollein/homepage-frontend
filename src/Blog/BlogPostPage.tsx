@@ -42,7 +42,10 @@ const BlogPostPage: React.FC = () => {
     <div className="mt-4 container-fluid" id="blog-post-page">
       <div className="row">
         <div className="col-12 col-lg-10">
-          <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} savePost={savePost} />
+          {post.id === Number(id)
+            ? <BlogPost post={post} feed={false} user={user} deletePost={deleteBlogPost} savePost={savePost} />
+            : null
+          }
         </div>
       </div>
     </div>
