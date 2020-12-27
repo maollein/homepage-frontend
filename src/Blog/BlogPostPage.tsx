@@ -12,6 +12,8 @@ const BlogPostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const history = useHistory();
+  const postInState = useSelector((state: IAppState) => state.blogs.posts.find(post => post.id === Number(id)));
+  if (postInState) dispatch(setCurrentPost(postInState));
   const post = useSelector((state: IAppState) => state.blogs.currentPost);
   const user = useSelector((state: IAppState) => state.user);
 
