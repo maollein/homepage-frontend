@@ -7,7 +7,7 @@ const Home: React.FC = () => {
       <div className="row">
         <div className="col-12 col-lg-10">
           <h2>Matti Leinonen</h2>
-          <img className="w-25 float-left mr-3 home-picture" src="/profile_picture.jpg"/>  
+          <img className="w-25 float-left mr-3 home-picture" alt="Profile picture of Matti" src="/profile_picture.jpg"/>  
           <p>
             Tervetuloa kotisivuilleni. Olen vuonna 1992 syntynyt filosofian maisteri.
             Valmistuin elokuussa 2020 Jyväskylän yliopistosta pääaineenani tietotekniikka.
