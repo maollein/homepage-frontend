@@ -1,3 +1,7 @@
 .home-picture {
   min-width: 150px;
 }
+
+div.home-content ul li {
+  list-style: none;
+}

@@ -26,11 +26,11 @@ const App: React.FC = () => {
   return (
     <Router>
       <MainNav />
-      <div className='container-fluid'>
+      <div className='container-fluid main-container'>
         <div className='row h-100'>
           <div className='d-none d-lg-block col-lg-2'>
           </div>
-          <div className='col-md-12 col-lg-8'>
+          <div className='col-md-12 col-lg-8 px-0'>
             <Switch>
               <Route path='/home'>
                 <Home />

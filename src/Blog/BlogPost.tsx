@@ -25,10 +25,10 @@ const BlogPost: React.FC<{
   };
 
   return (
-    <div className="blog-post mb-4">
+    <div className="blog-post mb-4 px-1">
       <h2 className="">
         {feed
-          ? <Link className="text-dark" to={`/blog/${post.id}`}>{post.title}</Link>
+          ? <Link className="text-dark link" to={`/blog/${post.id}`}>{post.title}</Link>
           : post.title
         }
       </h2>
@@ -42,7 +42,7 @@ const BlogPost: React.FC<{
       {user.user && post.user_id === user.user.id
         ? <div>
           <button onClick={() => deletePost(post.id)} className='btn btn-outline-danger'>Delete</button>
-          <button onClick={() => setShowEditor(!showEditor)} className="btn btn-outline-dark ml-2">Edit</button>
+          <button onClick={() => setShowEditor(!showEditor)} className="btn btn-outline-dark ms-2">Edit</button>
         </div>
         : null
       }

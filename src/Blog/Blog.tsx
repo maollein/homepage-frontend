@@ -79,14 +79,14 @@ const Blog: React.FC = () => {
   const getPageLinks = (): JSX.Element[] => {
     const links: JSX.Element[] = [];
     for (let i = 1; i < Math.ceil(postCount / 5) + 1; i++) {
-      links.push(<Link key={i} to={`/blog?page=${i}`}>{i}</Link>);
+      links.push(<Link className="link" key={i} to={`/blog?page=${i}`}>{i}</Link>);
     }
     return links;
   };
 
   return (
-    <div className="container-fluid h-100">
-      <div id="blog" className="row h-100">
+    <div className="container-fluid h-100 pe-0">
+      <div id="blog" className="row h-100 w-100">
         <div className="col-md-12 col-lg-9 pt-4">
           {posts
             .map(post =>
@@ -112,14 +112,14 @@ const Blog: React.FC = () => {
             }
           </button>
         </div>
-        <div className={`d-lg-none togglable-blog-nav border-left border-dark h-100 ${showAndAnimate()}`}>
+        <div className={`d-lg-none togglable-blog-nav border-start border-dark h-100 ${showAndAnimate()}`}>
           <div className="w-100 h-100 pt-4 pr-4 pl-2">
             <BlogProfile />
             <BlogArchive months={months} />
           </div>
         </div>
         <div id="blog-nav" className="d-none d-lg-block col-lg-3">
-          <div className="blog-nav border-left border-dark w-100 h-100">
+          <div className="blog-nav border-start border-dark w-100 h-100">
             <BlogProfile />
             <BlogArchive months={months} />
           </div>

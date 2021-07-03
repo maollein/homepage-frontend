@@ -22,7 +22,7 @@ div#root {
   width: 100%;
 }
 
-div#root div.container-fluid {
+div#root div.main-container {
   flex: auto;
   width: 100%;
   overflow-x: hidden;
@@ -40,6 +40,14 @@ div#root div.container-fluid {
 .modal-inner {
   background-color: white;
   margin-top: 10%;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 /* Hamburger svg must be loaded separately

@@ -1,3 +1,8 @@
+div#blog {
+  position: relative;
+  margin-left: 0;
+}
+
 div.blog-post-content p {
   margin-bottom: 0.5rem;
 }
@@ -22,12 +27,16 @@ div.page-links a {
 }
 
 div.blog-nav-toggler-closed {
+  width: auto;
+  padding: 0;
   position: absolute;
   right: 0;
   top: 10px;
 }
 
 div.blog-nav-toggler-open {
+  width: auto;
+  padding: 0;
   position: absolute;
   right: 300px;
   top: 10px;

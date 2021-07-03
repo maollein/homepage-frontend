@@ -25,29 +25,33 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="card mx-auto w-75 mt-4 border-dark">
+    <div className="card mx-auto w-75 mt-4 pb-4 border-dark">
       <form className="card-body w-75 mx-auto" onSubmit={login}>
-        <h3>Sign in</h3>
-        <div className="form-group mt-3">
-          <input className="form-control border-dark"
-            id="login-username-input"
-            type="text"
-            placeholder="username"
-            value={username}
-            onChange={(event) => setUsername(event?.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <input className="form-control border-dark"
-            id="login-password-input"
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(event) => setPassword(event?.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <button className="btn btn-outline-dark" id="login-btn" type="submit">Sign in</button>
+        <div className="container-fluid">
+          <div className="row">
+            <h3 className="ps-0">Sign in</h3>
+          </div>
+          <div className="row mt-2">
+            <input className="form-control border-dark"
+              id="login-username-input"
+              type="text"
+              placeholder="username"
+              value={username}
+              onChange={(event) => setUsername(event?.target.value)}
+            />
+          </div>
+          <div className="row mt-2">
+            <input className="form-control border-dark"
+              id="login-password-input"
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(event) => setPassword(event?.target.value)}
+            />
+          </div>
+          <div className="row mt-2">
+            <button className="btn btn-outline-dark" id="login-btn" type="submit">Sign in</button>
+          </div>
         </div>
       </form>
     </div>

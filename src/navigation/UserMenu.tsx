@@ -5,7 +5,7 @@ import { removeUser } from '../reducers/userReducer';
 import loginService from '../services/loginService';
 import { IUserInfo } from '../types/types';
 
-const UserMenu: React.FC<{user: IUserInfo}> = ({ user }) => {
+const UserMenu: React.FC<{ user: IUserInfo }> = ({ user }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,11 +23,11 @@ const UserMenu: React.FC<{user: IUserInfo}> = ({ user }) => {
 
   return (
     <li className='nav-item dropdown'>
-      <a className='nav-link dropdown-toggle' id="user-menu" href='#' role='button' data-toggle='dropdown'>{user.name}</a>
-      <div className='dropdown-menu dropdown-menu-right'>
-        <Link className='dropdown-item' to='/profile'>Profile</Link>
-        <a className='dropdown-item' id="user-menu-logout-btn" href='#' onClick={signOut}>Sign out</a>
-      </div>
+      <a className='nav-link dropdown-toggle' id="user-menu" href='#' role='button' data-bs-toggle='dropdown'>{user.name}</a>
+      <ul className='dropdown-menu dropdown-menu-end'>
+          <li><Link className='dropdown-item' to='/profile'>Profile</Link></li>
+          <li><a className='dropdown-item' id="user-menu-logout-btn" href='#' onClick={signOut}>Sign out</a></li>
+      </ul>
     </li>
   );
 };
