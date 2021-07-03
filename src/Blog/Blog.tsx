@@ -85,7 +85,7 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <div className="container-fluid h-100 pe-0">
+    <div className="container-fluid h-100 ps-0 pe-0">
       <div id="blog" className="row h-100 w-100">
         <div className="col-md-12 col-lg-9 pt-4">
           {posts
